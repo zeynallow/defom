@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+//Layout
+import Header from './Components/Layout/Header';
+import Footer from './Components/Layout/Footer';
+
+//Home
+import Home from './Components/Home';
+
+//Topic
+import CreateTopic from './Components/Topic/CreateTopic';
+import SingleTopic from './Components/Topic/SingleTopic';
+
+//Profile
+import CreateAccount from './Components/Account/CreateAccount';
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+
+      <Router>
+        <Header />
+          <Route exact path="/" component={Home} />
+          <Route path="/home" component={Home} />
+          <Route path="/create-topic" component={CreateTopic} />
+          <Route path="/topic" component={SingleTopic} />
+          <Route path="/create-account" component={CreateAccount} />
+        <Footer />
+      </Router>
+
       </div>
     );
   }
