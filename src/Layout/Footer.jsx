@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { userActions } from '../_actions';
 
 
 class Footer extends Component {
@@ -162,4 +164,15 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+
+function mapStateToProps(state) {
+    const { users, authentication } = state;
+    const { user } = authentication;
+    return {
+        user,
+        users
+    };
+}
+
+const connectedFooter = connect(mapStateToProps)(Footer);
+export { connectedFooter as Footer };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { userActions } from '../_actions';
 
 class SingleTopic extends Component {
 
@@ -1191,4 +1192,15 @@ class SingleTopic extends Component {
   }
 }
 
-export default SingleTopic;
+
+function mapStateToProps(state) {
+    const { users, authentication } = state;
+    const { user } = authentication;
+    return {
+        user,
+        users
+    };
+}
+
+const connectedSingleTopic = connect(mapStateToProps)(SingleTopic);
+export { connectedSingleTopic as SingleTopic };

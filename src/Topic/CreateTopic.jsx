@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { userActions } from '../_actions';
 
 class CreateTopic extends Component {
 
@@ -479,4 +480,15 @@ class CreateTopic extends Component {
         }
       }
 
-      export default CreateTopic;
+
+      function mapStateToProps(state) {
+          const { users, authentication } = state;
+          const { user } = authentication;
+          return {
+              user,
+              users
+          };
+      }
+
+      const connectedCreateTopic = connect(mapStateToProps)(CreateTopic);
+      export { connectedCreateTopic as CreateTopic };

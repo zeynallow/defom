@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { userActions } from '../_actions';
 
 class Header extends Component {
 
@@ -316,4 +318,15 @@ class Header extends Component {
 }
 }
 
-export default Header;
+
+function mapStateToProps(state) {
+    const { users, authentication } = state;
+    const { user } = authentication;
+    return {
+        user,
+        users
+    };
+}
+
+const connectedHeader = connect(mapStateToProps)(Header);
+export { connectedHeader as Header };
