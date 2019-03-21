@@ -6,22 +6,28 @@ import { userActions } from '../_actions';
 class Header extends Component {
 
 
+  componentDidMount() {
+    // this.props.dispatch(userActions.getAll());
+  }
+
+
   render() {
+    const { user } = this.props;
     return (
       <header>
         <div className="header js-header js-dropdown">
           <div className="container">
             <div className="header__logo">
-                <h1>
-                  <img
-                    src="fonts/icons/main/Logo_Forum.svg"
-                    alt="logo" />
-                </h1>
-                <div
-                  className="header__logo-btn"
-                  data-dropdown-btn="logo">
-                  Defom
-                </div>
+              <h1>
+                <img
+                  src="fonts/icons/main/Logo_Forum.svg"
+                  alt="logo" />
+              </h1>
+              <div
+                className="header__logo-btn"
+                data-dropdown-btn="logo">
+                Defom
+              </div>
             </div>
             <div className="header__search">
               <form action="#">
@@ -253,66 +259,67 @@ class Header extends Component {
             <img
               src="fonts/icons/avatars/A.svg"
               alt="avatar" />
-            azyrusmax<i className="icon-Arrow_Below" />
-        </div>
-        <nav
-          className="dropdown dropdown--design-01"
-          data-dropdown-list="user">
-          <div>
-            <div className="dropdown__icons">
-              <a href="#">
-                <i className="icon-Bookmark" />
-              </a>
-              <a href="#">
-                <i className="icon-Message" />
-              </a>
-              <a href="#">
-                <i className="icon-Preferences" />
-              </a>
-              <a href="#">
-                <i className="icon-Logout" />
-              </a>
-            </div>
+            {user.username}
+            <i className="icon-Arrow_Below" />
           </div>
-          <div>
-            <ul className="dropdown__catalog">
-              <li>
-                <a href="#">Dashboard</a>
-              </li>
-              <li>
-                <a href="#">Badges</a>
-              </li>
-              <li>
+          <nav
+            className="dropdown dropdown--design-01"
+            data-dropdown-list="user">
+            <div>
+              <div className="dropdown__icons">
                 <a href="#">
-                  My Groups
+                  <i className="icon-Bookmark" />
                 </a>
-              </li>
-              <li>
-                <a href="#">Notifications</a>
-              </li>
-              <li>
-                <a href="#">Topics</a>
-              </li>
-              <li>
-                <a href="#">Likes</a>
-              </li>
-              <li>
-                <a href="#">Solved</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+                <a href="#">
+                  <i className="icon-Message" />
+                </a>
+                <a href="#">
+                  <i className="icon-Preferences" />
+                </a>
+                <a href="/login">
+                  <i className="icon-Logout" />
+                </a>
+              </div>
+            </div>
+            <div>
+              <ul className="dropdown__catalog">
+                <li>
+                  <a href="#">Dashboard</a>
+                </li>
+                <li>
+                  <a href="#">Badges</a>
+                </li>
+                <li>
+                  <a href="#">
+                    My Groups
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Notifications</a>
+                </li>
+                <li>
+                  <a href="#">Topics</a>
+                </li>
+                <li>
+                  <a href="#">Likes</a>
+                </li>
+                <li>
+                  <a href="#">Solved</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div className="header__offset-btn">
+        <Link to="/create-topic">
+          <img
+            src="fonts/icons/main/New_Topic.svg"
+            alt="New Topic" />
+        </Link>
       </div>
     </div>
-    <div className="header__offset-btn">
-      <Link to="/create-topic">
-        <img
-          src="fonts/icons/main/New_Topic.svg"
-          alt="New Topic" />
-      </Link>
-    </div>
-  </div>
-</header>
+  </header>
 
 );
 }
@@ -320,12 +327,11 @@ class Header extends Component {
 
 
 function mapStateToProps(state) {
-    const { users, authentication } = state;
-    const { user } = authentication;
-    return {
-        user,
-        users
-    };
+  const { authentication } = state;
+  const { user } = authentication;
+  return {
+    user
+  };
 }
 
 const connectedHeader = connect(mapStateToProps)(Header);

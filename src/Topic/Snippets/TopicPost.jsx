@@ -28,7 +28,7 @@ class TopicPost extends Component {
 getPostUser(){
   return this.state.post_users.map(user => {
       return (
-        <div>
+        <div key={user}>
           <a href={user} className="avatar">
             <img
               src="fonts/icons/avatars/L.svg"
@@ -43,7 +43,7 @@ getPostUser(){
 getPostTags(){
   return this.state.post_tags.map(tag => {
       return (
-          <a href="#" className="bg-4f80b0">{tag}</a>
+          <a key={tag} href="#" className="bg-4f80b0">{tag}</a>
       )
   })
 }
