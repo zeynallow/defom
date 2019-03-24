@@ -34,8 +34,9 @@ class Home extends Component {
           key={post.id}
           post_id={post.id}
           post_title={post.title}
-          post_category={post.categories}
-          post_tags={post.tags}
+          post_category={post.category_title}
+          post_category_slug={post.category_slug}
+          post_category_color={post.category_color}
           post_users={['zeynal','cavidan']}
           post_replies="54"
           post_views="1200"

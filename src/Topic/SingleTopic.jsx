@@ -11,12 +11,9 @@ class SingleTopic extends Component {
     super(props);
     this.state = {
       getPost: [],
-      getCategories: [],
-      getTags: [],
       getReplies: [],
       reply_message: ""
     };
-
 
     this.handleChange = this.handleChange.bind(this);
     this.replySubmit = this.replySubmit.bind(this);
@@ -32,8 +29,6 @@ class SingleTopic extends Component {
       .then((response) => response.json())
       .then((topic) => {
         this.setState({ getPost: topic.post });
-        this.setState({ getCategories: topic.post.categories });
-        this.setState({ getTags: topic.post.tags });
       });
 
 
@@ -270,32 +265,6 @@ class SingleTopic extends Component {
     }
   }
 
-  //Get Post Tags
-  getTags() {
-    const tags = this.state.getTags;
-
-    return tags.map((tag, index) => {
-      return (
-        <Link key={index} to={"/tag/" + tag} className="bg-4f80b0">{tag}</Link>
-      )
-    })
-  }
-
-  /*
-  * Get Post Categories
-  */
-  getCategories() {
-    const categories = this.state.getCategories;
-
-    if (categories.length > 0) {
-      return categories.map((category, index) => {
-        return <Link key={index} to={"/category/" + category.title} className="category">
-          <i className="bg-3ebafa" /> {category.title}
-        </Link>
-      })
-    }
-  }
-
   /*
   * Get Post
   */
@@ -311,11 +280,9 @@ class SingleTopic extends Component {
         </h2>
         <div className="topics__heading-info">
 
-          {this.getCategories()}
-
-          <div className="tags">
-            {this.getTags()}
-          </div>
+        <Link to={"/category/" + post.category_slug} className="category">
+          <i className={post.category_color} /> {post.category_title}
+        </Link>
 
         </div>
       </div>

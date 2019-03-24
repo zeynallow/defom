@@ -14,7 +14,8 @@ class TopicPost extends Component {
       post_id: this.props.post_id,
       post_title: this.props.post_title,
       post_category: this.props.post_category,
-      post_tags: this.props.post_tags,
+      post_category_color: this.props.post_category_color,
+      post_category_slug: this.props.post_category_slug,
       post_users: this.props.post_users,
       post_replies: this.props.post_replies,
       post_views: this.props.post_views,
@@ -42,30 +43,6 @@ class TopicPost extends Component {
     })
   }
 
-  //Get Post Tags
-  getPostTags() {
-    return this.state.post_tags.map((tag, index) => {
-      return (
-        <Link key={index} to={"/tag/" + tag} className="bg-4f80b0">{tag}</Link>
-      )
-    })
-  }
-
-
-  /*
-  * Get Post Categories
-  */
-  getCategories() {
-    const categories = this.state.post_category;
-
-    if (categories.length > 0) {
-      return categories.map((category, index) => {
-        return <Link key={index} to={"/category/" + category.title} className="category">
-          <i className="bg-3ebafa" /> {category.title}
-        </Link>
-      })
-    }
-  }
 
   //Render
   render() {
@@ -96,13 +73,12 @@ class TopicPost extends Component {
                   {this.state.post_title}
                 </h3>
               </Link>
-              <div className="posts__tags tags">
-                {this.getPostTags()}
-              </div>
             </div>
           </div>
           <div className="posts__category">
-            {this.getCategories()}
+          <Link to={"/category/" + this.state.post_category_slug} className="category">
+          <i className={this.state.post_category_color} /> {this.state.post_category}
+        </Link>
           </div>
         </div>
         <div className="posts__section-right">
