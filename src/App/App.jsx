@@ -35,6 +35,8 @@ class App extends React.Component {
     });
   }
 
+
+
   render() {
     const { alert } = this.props;
     return (
@@ -53,7 +55,7 @@ class App extends React.Component {
             <Route path="/home" component={Home} />
             <Route exact path="/" component={Home} />
             <Route path="/create-topic" component={CreateTopic} />
-            <Route path="/topic" component={SingleTopic} />
+            <Route path="/topic/:post_id" component={SingleTopic} />
             <Route path="/create-account" component={CreateAccount} />
           </div>
           <Footer />

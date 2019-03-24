@@ -482,11 +482,11 @@ class CreateTopic extends Component {
 
 
       function mapStateToProps(state) {
-          const { users, authentication } = state;
+          const { account, authentication } = state;
           const { user } = authentication;
           return {
               user,
-              users
+              account
           };
       }
 

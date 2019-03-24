@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userActions } from '../_actions';
 
 
 class Footer extends Component {
@@ -13,7 +12,7 @@ class Footer extends Component {
             <div className="footer__logo">
               <div>
                 <img
-                  src="fonts/icons/main/Logo_Forum.svg"
+                  src="/fonts/icons/main/Logo_Forum.svg"
                   alt="logo" />
                 Unity
               </div>
@@ -166,10 +165,11 @@ class Footer extends Component {
 
 
 function mapStateToProps(state) {
-    const { authentication } = state;
+    const { account, authentication } = state;
     const { user } = authentication;
     return {
-        user
+        user,
+        account
     };
 }
 

@@ -1,5 +1,4 @@
 import config from '../config';
-import { authHeader } from '../_helpers';
 
 export const userService = {
     login,
@@ -28,14 +27,6 @@ function logout() {
     localStorage.removeItem('user');
 }
 
-// function getUserInformation() {
-//     const requestOptions = {
-//         method: 'GET',
-//         headers: authHeader()
-//     };
-//
-//     return fetch(`${config.apiUrl}/api/v1/users/get/`, requestOptions).then(handleResponse);
-// }
 
 
 function register(user) {

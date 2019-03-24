@@ -1,18 +1,85 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { userActions } from '../_actions';
+import { userActions, accountActions } from '../_actions';
 
 class Header extends Component {
 
 
+
   componentDidMount() {
-    // this.props.dispatch(userActions.getAll());
+    this.props.dispatch(accountActions.getAccountInformation());
   }
 
 
   render() {
-    const { user } = this.props;
+
+    const { account } = this.props;
+
+    var AccountBlock = <div className="header__user">
+      <Link className="header__user-btn" to="/login">
+        Login
+      </Link>
+    </div>
+
+    if(account.information){
+      var AccountBlock = <div className="header__user">
+        <div className="header__user-btn" data-dropdown-btn="user">
+          <img src={"/fonts/icons/avatars/"+account.information.username.charAt(0).toUpperCase()+".svg"} alt="avatar" />
+          {account.information.username}
+          <i className="icon-Arrow_Below" />
+        </div>
+        <nav
+          className="dropdown dropdown--design-01"
+          data-dropdown-list="user">
+          <div>
+            <div className="dropdown__icons">
+              <a href="#">
+                <i className="icon-Bookmark" />
+              </a>
+              <a href="#">
+                <i className="icon-Message" />
+              </a>
+              <a href="#">
+                <i className="icon-Preferences" />
+              </a>
+              <a href="/login">
+                <i className="icon-Logout" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <ul className="dropdown__catalog">
+              <li>
+                <a href="#">Dashboard</a>
+              </li>
+              <li>
+                <a href="#">Badges</a>
+              </li>
+              <li>
+                <a href="#">
+                  My Groups
+                </a>
+              </li>
+              <li>
+                <a href="#">Notifications</a>
+              </li>
+              <li>
+                <a href="#">Topics</a>
+              </li>
+              <li>
+                <a href="#">Likes</a>
+              </li>
+              <li>
+                <a href="#">Solved</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    }
+
+
     return (
       <header>
         <div className="header js-header js-dropdown">
@@ -20,7 +87,7 @@ class Header extends Component {
             <div className="header__logo">
               <h1>
                 <img
-                  src="fonts/icons/main/Logo_Forum.svg"
+                  src="/fonts/icons/main/Logo_Forum.svg"
                   alt="logo" />
               </h1>
               <div
@@ -42,41 +109,6 @@ class Header extends Component {
               <div className="header__search-close js-header-search-btn-close">
                 <i className="icon-Cancel" />
               </div>
-              <div
-                className="header__search-btn"
-                data-dropdown-btn="search">
-                Topics<i className="icon-Arrow_Below" />
-            </div>
-            <div
-              className="dropdown dropdown--design-01"
-              data-dropdown-list="search">
-              <ul>
-                <li>
-                  <label>
-                    <label className="custom-checkbox">
-                      <input type="checkbox" defaultChecked="checked" />
-                      <i />
-                    </label>
-                    Search Titles Only
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <label className="custom-checkbox">
-                      <input type="checkbox" />
-                      <i />
-                    </label>
-                    Show Results as Posts
-                  </label>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon-Advanced_Search" />
-                    Advanced Search
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
           <div className="header__menu">
             <div
@@ -252,69 +284,18 @@ class Header extends Component {
             </div>
           </div>
         </div>
-        <div className="header__user">
-          <div
-            className="header__user-btn"
-            data-dropdown-btn="user">
-            <img
-              src="fonts/icons/avatars/A.svg"
-              alt="avatar" />
-            {user.username}
-            <i className="icon-Arrow_Below" />
-          </div>
-          <nav
-            className="dropdown dropdown--design-01"
-            data-dropdown-list="user">
-            <div>
-              <div className="dropdown__icons">
-                <a href="#">
-                  <i className="icon-Bookmark" />
-                </a>
-                <a href="#">
-                  <i className="icon-Message" />
-                </a>
-                <a href="#">
-                  <i className="icon-Preferences" />
-                </a>
-                <a href="/login">
-                  <i className="icon-Logout" />
-                </a>
-              </div>
-            </div>
-            <div>
-              <ul className="dropdown__catalog">
-                <li>
-                  <a href="#">Dashboard</a>
-                </li>
-                <li>
-                  <a href="#">Badges</a>
-                </li>
-                <li>
-                  <a href="#">
-                    My Groups
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Notifications</a>
-                </li>
-                <li>
-                  <a href="#">Topics</a>
-                </li>
-                <li>
-                  <a href="#">Likes</a>
-                </li>
-                <li>
-                  <a href="#">Solved</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
+
+        {/*AccountBlock*/}
+
+        {AccountBlock}
+
+        {/*AccountBlock*/}
+
       </div>
       <div className="header__offset-btn">
         <Link to="/create-topic">
           <img
-            src="fonts/icons/main/New_Topic.svg"
+            src="/fonts/icons/main/New_Topic.svg"
             alt="New Topic" />
         </Link>
       </div>
@@ -327,10 +308,11 @@ class Header extends Component {
 
 
 function mapStateToProps(state) {
-  const { authentication } = state;
+  const { account,authentication } = state;
   const { user } = authentication;
   return {
-    user
+    user,
+    account
   };
 }
 
