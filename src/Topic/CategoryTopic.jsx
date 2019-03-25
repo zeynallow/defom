@@ -7,7 +7,7 @@ import TopicPost from '../Topic/Snippets/TopicPost';
 import { Nav } from '../Layout/Nav';
 
 
-class Home extends Component {
+class CategoryTopic extends Component {
 
   constructor(props) {
     super(props);
@@ -17,14 +17,20 @@ class Home extends Component {
   }
 
 
-  componentDidMount() {
+  componentDidUpdate() {
 
-    /* latestPost */
-    fetch('http://localhost:8000/api/v1/topic/posts/')
+    const { match: { params } } = this.props;
+
+    /* Category Posts */
+    fetch(`http://localhost:8000/api/v1/topic/category-posts/${params.category_id}`)
     .then((response) => response.json())
-    .then((latestPost) => {
-      this.setState({getPosts:latestPost.posts});
+    .then((categoryPosts) => {
+      this.setState({getPosts:categoryPosts.posts});
     });
+  }
+
+  componentWillUnmount(){
+    this.setState({getPosts:[]});
   }
 
   getPosts(){
@@ -92,5 +98,5 @@ class Home extends Component {
     };
   }
 
-  const connectedHome = connect(mapStateToProps)(Home);
-  export { connectedHome as Home };
+  const connectedCategoryTopic = connect(mapStateToProps)(CategoryTopic);
+  export { connectedCategoryTopic as CategoryTopic };

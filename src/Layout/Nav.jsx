@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+
 
 class Nav extends Component {
 
 
+  getCategories() {
+    const { category } = this.props;
+    console.log(category);
+    if (category.categories) {
+      return category.categories.map((cat, index) => {
+        return <li key={index} className="col-xs-6">
+          <Link to={"/category/" + cat.id + "/" + cat.slug} className="category"><i className={cat.color} />{cat.title}</Link>
+        </li>
+      })
+    }
+  }
 
   render() {
 
     return (
-      
+
       <div className="nav">
         <div className="nav__categories js-dropdown">
           <div className="nav__select">
@@ -21,75 +34,9 @@ class Nav extends Component {
               className="dropdown dropdown--design-01"
               data-dropdown-list="categories">
               <ul className="dropdown__catalog row">
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-f9bc64" />Hobbies</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-348aa7" />Social</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-4436f8" />Video</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-5dd39e" />Random</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-ff755a" />Arts</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-bce784" />Tech</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-83253f" />Gaming</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-c49bbb" />Science</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-3ebafa" />Exchange</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-c6b38e" />Pets</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-a7cdbd" />Entertainment</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-525252" />Education</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-777da7" />Q&amp;As</a>
-                </li>
-                <li className="col-xs-6">
-                  <a href="#" className="category"><i className="bg-368f8b" />Politics</a>
-                </li>
+                {this.getCategories()}
               </ul>
             </nav>
-          </div>
-          <div className="nav__select">
-            <div
-              className="btn-select"
-              data-dropdown-btn="tags">Tags</div>
-            <div
-              className="dropdown dropdown--design-01"
-              data-dropdown-list="tags">
-              <div className="tags">
-                <a href="#" className="bg-4f80b0">gaming</a>
-                <a href="#" className="bg-424ee8">nature</a>
-                <a href="#" className="bg-36b7d7">entertainment</a>
-                <a href="#" className="bg-ef429e">selfie</a>
-                <a href="#" className="bg-7cc576">camera</a>
-                <a href="#" className="bg-3a3a17">username</a>
-                <a href="#" className="bg-6f7e9c">funny</a>
-                <a href="#" className="bg-f26522">photography</a>
-                <a href="#" className="bg-a3d39c">climbing</a>
-                <a href="#" className="bg-92278f">adventure</a>
-                <a href="#" className="bg-8781bd">dreams</a>
-                <a href="#" className="bg-f1ab32">life</a>
-                <a href="#" className="bg-3b96ca">reason</a>
-                <a href="#" className="bg-348aa7">social</a>
-              </div>
-            </div>
           </div>
         </div>
         <div className="nav__menu js-dropdown">
@@ -102,46 +49,46 @@ class Nav extends Component {
               data-dropdown-list="menu">
               <ul className="dropdown__catalog">
                 <li>
-                  <a href="#">Latest</a>
+                  <Link to="">Latest</Link>
                 </li>
                 <li>
-                  <a href="#">Unread</a>
+                  <Link to="">Unreadaa</Link>
                 </li>
                 <li>
-                  <a href="#">Rising</a>
+                  <Link to="">Rising</Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="">
                     Most Liked
-                  </a>
+                    </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="">
                     Follow Feed
-                  </a>
+                 </Link>
                 </li>
               </ul>
             </div>
           </div>
           <ul>
             <li className="active">
-              <a href="#">Latest</a>
+              <Link to="">Latest</Link>
             </li>
             <li>
-              <a href="#">Unread</a>
+              <Link to="">Unread</Link>
             </li>
             <li>
-              <a href="#">Rising</a>
+              <Link to="">Rising</Link>
             </li>
             <li>
-              <a href="#">
+              <Link to="">
                 Most Liked
-              </a>
+                </Link>
             </li>
             <li>
-              <a href="#">
+              <Link to="">
                 Follow Feed
-              </a>
+                </Link>
             </li>
           </ul>
         </div>
@@ -151,5 +98,12 @@ class Nav extends Component {
 }
 
 
+function mapStateToProps(state) {
+  const { category } = state;
+  return {
+    category
+  };
+}
 
-export default Nav;
+const connectedNav = connect(mapStateToProps)(Nav);
+export { connectedNav as Nav }

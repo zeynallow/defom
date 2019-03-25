@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Nav from '../Layout/Nav';
+import {Nav} from '../Layout/Nav';
 
 class SingleTopic extends Component {
 
@@ -207,19 +207,17 @@ class SingleTopic extends Component {
               </div>
               <div className="topic__caption">
                 <div className="topic__name">
-                  <a href="#">{reply.owner_username}</a>
+               {reply.owner_username}
                 </div>
                 <div className="topic__date">
                   <div className="topic__user topic__user--pos-r">
                     <i className="icon-Reply_Fill" />
-                    <a href="#" className="avatar">
                       <img
                         src="/fonts/icons/avatars/B.svg"
                         alt="avatar" />
-                    </a>
-                    <a href="#" className="topic__user-name">
+                    <span className="topic__user-name">
                       Benjamin Caesar
-                </a>
+                     </span>
                   </div>
                   <i className="icon-Watch_Later" />
                   {reply.created_date}
@@ -235,28 +233,28 @@ class SingleTopic extends Component {
               <div className="topic__footer">
                 <div className="topic__footer-likes">
                   <div>
-                    <a href="#">
+                    <span>
                       <i className="icon-Upvote" />
-                    </a>
+                   </span>
                     <span>137</span>
                   </div>
                   <div>
-                    <a href="#">
+                    <span>
                       <i className="icon-Downvote" />
-                    </a>
+                   </span>
                     <span>02</span>
                   </div>
                   <div>
-                    <a href="#">
+                    <span>
                       <i className="icon-Favorite_Topic" />
-                    </a>
+                   </span>
                     <span>46</span>
                   </div>
                 </div>
                 <div className="topic__footer-share">
-                  <a href="#">
+                  <span>
                     <i className="icon-Reply_Fill" />
-                  </a>
+                 </span>
                 </div>
               </div>
             </div>
@@ -299,9 +297,9 @@ class SingleTopic extends Component {
               </div>
               <div className="topic__caption">
                 <div className="topic__name">
-                  <a href="#">
+                  <span>
                     {post.owner_username}
-                  </a>
+                 </span>
                 </div>
                 <div className="topic__date">
                   <i className="icon-Watch_Later" />
@@ -318,40 +316,40 @@ class SingleTopic extends Component {
               <div className="topic__footer">
                 <div className="topic__footer-likes">
                   <div>
-                    <a href="#">
+                    <span>
                       <i className="icon-Upvote" />
-                    </a>
+                   </span>
                     <span>201</span>
                   </div>
                   <div>
-                    <a href="#">
+                    <span>
                       <i className="icon-Downvote" />
-                    </a>
+                   </span>
                     <span>08</span>
                   </div>
                   <div>
-                    <a href="#">
+                    <span>
                       <i className="icon-Favorite_Topic" />
-                    </a>
+                   </span>
                     <span>39</span>
                   </div>
                 </div>
                 <div className="topic__footer-share">
                   <div data-visible="desktop">
-                    <a href="#">
+                    <span>
                       <i className="icon-Share_Topic" />
-                    </a>
-                    <a href="#">
+                   </span>
+                    <span>
                       <i className="icon-Flag_Topic" />
-                    </a>
-                    <a href="#">
+                   </span>
+                    <span>
                       <i className="icon-Bookmark" />
-                    </a>
+                   </span>
                   </div>
                   <div data-visible="mobile">
-                    <a href="#">
+                    <span>
                       <i className="icon-More_Options" />
-                    </a>
+                   </span>
                   </div>
                 </div>
               </div>
@@ -376,11 +374,11 @@ class SingleTopic extends Component {
                       Sonuncu cavablayan
                         </span>
                     <div className="topic__info-avatar">
-                      <a href="#" className="avatar">
+                      <span className="avatar">
                         <img
                           src="/fonts/icons/avatars/A.svg"
                           alt="avatar" />
-                      </a>
+                     </span>
                       <span>4h</span>
                     </div>
                   </div>
@@ -421,11 +419,10 @@ class SingleTopic extends Component {
         <div className="topics__calendar">
           <div className="calendar">
             <div className="calendar__top">
-              <a
-                href="#"
+              <span
                 className="calendar__btn calendar__btn--c-01">
                 <i className="icon-Calender" />
-              </a>
+             </span>
             </div>
             <div className="calendar__center">
               <div className="calendar__first">
@@ -446,16 +443,14 @@ class SingleTopic extends Component {
           </div>
             </div>
             <div className="calendar__bottom">
-              <a
-                href="#"
+              <span
                 className="calendar__btn calendar__btn--c-01">
                 <i className="icon-Track" />
-              </a>
-              <a
-                href="#"
+             </span>
+              <span
                 className="calendar__btn calendar__btn--c-02">
                 <i className="icon-Reply_Fill" />
-              </a>
+             </span>
             </div>
           </div>
         </div>
@@ -464,10 +459,10 @@ class SingleTopic extends Component {
 
       {/* Topic Footer */}
       <div className="topics__control">
-        <a href="#" className="btn"><i className="icon-Bookmark" />Yadda saxla</a>
-        <a href="#" className="btn"><i className="icon-Share_Topic" />Paylaş</a>
-        <a href="#" className="btn"><i className="icon-Flag_Topic" />Şikayət et</a>
-        <a href="#" className="btn"><i className="icon-Add_User" />Dəvət et</a>
+        <span className="btn"><i className="icon-Bookmark" />Yadda saxla</span>
+        <span className="btn"><i className="icon-Share_Topic" />Paylaş</span>
+        <span className="btn"><i className="icon-Flag_Topic" />Şikayət et</span>
+        <span className="btn"><i className="icon-Add_User" />Dəvət et</span>
       </div>
       {/* Topic Footer */}
 

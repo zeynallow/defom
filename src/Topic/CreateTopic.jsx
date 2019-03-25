@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { userActions } from '../_actions';
 
 class CreateTopic extends Component {
 
@@ -21,6 +21,7 @@ class CreateTopic extends Component {
 
 }
 
+
   /*
   * Post Submit
   */
@@ -28,16 +29,18 @@ class CreateTopic extends Component {
   postSubmit(event) {
 
     let user = JSON.parse(localStorage.getItem('user'));
-    const { account } = this.props;
 
     if (user && user.key) {
 
       var postData = {
         "title": this.state.title,
         "category": this.state.category,
-        "text": this.state.text
+        "text": this.state.text,
+        "post_success":false,
+        "post_slug":"",
+        "post_id":""
       }
-      console.log("POST_DATA",postData);
+
 
       const requestOptions = {
         method: 'POST',
@@ -51,17 +54,14 @@ class CreateTopic extends Component {
 
       fetch('http://localhost:8000/api/v1/topic/posts/', requestOptions)
         .then((response) => response.json())
-        .then((reply) => {
+        .then((post) => {
 
-          if (reply.success) {
-            // this.setState({
-            //   getReplies: this.state.getReplies.concat({
-            //     'text': this.state.reply_message,
-            //     'owner_username': account.information.username,
-            //     'created_date': 'İndi'
-            //   })
-            // })
-            alert("POST OK");
+          if (post.success) {
+            this.setState({
+              post_success:true,
+              post_slug:post.post_slug,
+              post_id:post.post_id
+            })
           } else {
             alert("Sehv bash verdi");
           }
@@ -82,6 +82,18 @@ class CreateTopic extends Component {
 
 
   render() {
+
+    if (this.state.post_success) {
+        return <Redirect to={"/topic/"+this.state.post_id+"/"+this.state.post_slug} />
+    }
+
+    const { category } = this.props;
+    let getCategories = []
+
+    if(category.categories){
+      getCategories = category.categories;
+    }
+
     return (
       <main>
         <div className="container">
@@ -92,9 +104,6 @@ class CreateTopic extends Component {
                   <img src="fonts/icons/main/New_Topic.svg" alt="New topic" />
                   Yeni mövzü yarat
               </div>
-                <span>
-                  Forum Guidelines
-              </span>
               </div>
               <div className="create__section">
                 <label className="create__label" htmlFor="title">
@@ -110,9 +119,12 @@ class CreateTopic extends Component {
                   </label>
                     <label className="custom-select">
                       <select onChange={this.handleChange} value={this.state.category} name="category" id="category">
-                        <option value="1">Choose</option>
-                        <option value="2">Choose</option>
-                        <option value="3">Choose</option>
+                        <option value="0">Seçin</option>
+                        {
+                           getCategories.map((cat,index) => {
+                              return <option key={index} value={cat.id}>{cat.title}</option>
+                          })
+                         }
                       </select>
                     </label>
                   </div>
@@ -271,11 +283,12 @@ class CreateTopic extends Component {
 
 
 function mapStateToProps(state) {
-  const { account, authentication } = state;
+  const { account, authentication,category } = state;
   const { user } = authentication;
   return {
     user,
-    account
+    account,
+    category
   };
 }
 

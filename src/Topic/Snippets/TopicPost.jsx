@@ -12,6 +12,7 @@ class TopicPost extends Component {
 
     this.state = {
       post_id: this.props.post_id,
+      post_slug: this.props.post_slug,
       post_title: this.props.post_title,
       post_category: this.props.post_category,
       post_category_color: this.props.post_category_color,
@@ -52,13 +53,13 @@ class TopicPost extends Component {
 
 
     //Check Pinned Post
-    if (this.state.post_pinned == "true") {
+    if (this.state.post_pinned === "true") {
       post_background = "bg-fef2e0";
       post_icon = { __html: '<i><img src="fonts/icons/main/Pinned.svg" alt="Pinned"></i>' };
     }
 
     //Check Locked Post
-    if (this.state.post_locked == "true") {
+    if (this.state.post_locked === "true") {
       post_icon = { __html: '<i class="icon-Locked"></i>' };
     }
 
@@ -67,7 +68,7 @@ class TopicPost extends Component {
         <div className="posts__section-left">
           <div className="posts__topic">
             <div className="posts__content">
-              <Link to={"/topic/" + this.state.post_id}>
+              <Link to={"/topic/" + this.state.post_id +"/" + this.state.post_slug}>
                 <h3>
                   <span dangerouslySetInnerHTML={post_icon} />
                   {this.state.post_title}
@@ -76,7 +77,8 @@ class TopicPost extends Component {
             </div>
           </div>
           <div className="posts__category">
-          <Link to={"/category/" + this.state.post_category_slug} className="category">
+          
+          <Link to={"/category/" + this.state.post_category+"/" + this.state.post_category_slug} className="category">
           <i className={this.state.post_category_color} /> {this.state.post_category}
         </Link>
           </div>

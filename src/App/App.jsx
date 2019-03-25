@@ -20,6 +20,7 @@ import { Home } from '../Home/Home';
 //Topic
 import { CreateTopic } from '../Topic/CreateTopic';
 import { SingleTopic } from '../Topic/SingleTopic';
+import { CategoryTopic } from '../Topic/CategoryTopic';
 
 
 
@@ -49,13 +50,13 @@ class App extends React.Component {
           }
 
           <div>
-            {/* <PrivateRoute exact path="/" component={Home} /> */}
+            <PrivateRoute path="/create-topic" component={CreateTopic} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={CreateAccount} />
             <Route path="/home" component={Home} />
             <Route exact path="/" component={Home} />
-            <Route path="/create-topic" component={CreateTopic} />
-            <Route path="/topic/:post_id" component={SingleTopic} />
+            <Route path="/topic/:post_id/:post_slug" component={SingleTopic} />
+            <Route path="/category/:category_id/:category_slug" component={CategoryTopic} />
             <Route path="/create-account" component={CreateAccount} />
           </div>
           <Footer />

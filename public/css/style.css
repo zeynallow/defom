@@ -3133,6 +3133,7 @@ select {
 }
 .header [data-dropdown-list="notification"] > div > a {
   padding: 20px 0;
+  font-size: 13px;
   align-items: flex-start;
   overflow: hidden;
   display: -moz-box;

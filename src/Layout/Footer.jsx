@@ -22,20 +22,20 @@ class Footer extends Component {
                 <i className="icon-Support" />
                 <ul className="footer__menu">
                   <li>
-                    <a href="#">Support</a>
+                    <span>Support</span>
                   </li>
                   <li>
-                    <a href="#">About</a>
+                    <span>About</span>
                   </li>
                   <li>
-                    <a href="#">
+                    <span>
                       Contact Us
-                    </a>
+                    </span>
                   </li>
                   <li>
-                    <a href="#">
+                    <span>
                       The Team
-                    </a>
+                    </span>
                   </li>
                 </ul>
                 <div className="footer__language">
@@ -53,19 +53,19 @@ class Footer extends Component {
                         <h3>Region</h3>
                         <ul className="dropdown__catalog">
                           <li className="active">
-                            <a href="#"><i />America</a>
+                            <span><i />America</span>
                           </li>
                           <li>
-                            <a href="#"><i />Europe</a>
+                            <span><i />Europe</span>
                           </li>
                           <li>
-                            <a href="#"><i />Asia</a>
+                            <span><i />Asia</span>
                           </li>
                           <li>
-                            <a href="#"><i />China</a>
+                            <span><i />China</span>
                           </li>
                           <li>
-                            <a href="#"><i />Australia</a>
+                            <span><i />Australia</span>
                           </li>
                         </ul>
                       </div>
@@ -73,16 +73,16 @@ class Footer extends Component {
                         <h3>Language</h3>
                         <ul className="dropdown__catalog">
                           <li className="active">
-                            <a href="#"><i />English</a>
+                            <span><i />English</span>
                           </li>
                           <li>
-                            <a href="#"><i />Espanol</a>
+                            <span><i />Espanol</span>
                           </li>
                           <li>
-                            <a href="#"><i />Portugues</a>
+                            <span><i />Portugues</span>
                           </li>
                           <li>
-                            <a href="#"><i />Chinese</a>
+                            <span><i />Chinese</span>
                           </li>
                         </ul>
                       </div>
@@ -98,53 +98,53 @@ class Footer extends Component {
                     </span>
                   </li>
                   <li>
-                    <a href="#">Teams</a>
+                    <span>Teams</span>
                   </li>
                   <li>
-                    <a href="#">Privacy</a>
+                    <span>Privacy</span>
                   </li>
                   <li>
-                    <a href="#">
+                    <span>
                       Send Feedback
-                    </a>
+                    </span>
                   </li>
                 </ul>
                 <ul className="footer__social">
                   <li>
-                    <a href="#">
+                    <span>
                       <i
                         className="fa fa-facebook-square"
                         aria-hidden="true" />
-                    </a>
+                    </span>
                   </li>
                   <li>
-                    <a href="#">
+                    <span>
                       <i className="fa fa-twitter" aria-hidden="true" />
-                    </a>
+                    </span>
                   </li>
                   <li>
-                    <a href="#">
+                    <span>
                       <i
                         className="fa fa-google-plus"
                         aria-hidden="true" />
-                    </a>
+                    </span>
                   </li>
                   <li>
-                    <a href="#">
+                    <span>
                       <i
                         className="fa fa-dribbble"
                         aria-hidden="true" />
-                    </a>
+                    </span>
                   </li>
                   <li>
-                    <a href="#">
+                    <span>
                       <i className="fa fa-cloud" aria-hidden="true" />
-                    </a>
+                    </span>
                   </li>
                   <li>
-                    <a href="#">
+                    <span>
                       <i className="fa fa-rss" aria-hidden="true" />
-                    </a>
+                    </span>
                   </li>
                 </ul>
                 <div
@@ -165,11 +165,12 @@ class Footer extends Component {
 
 
 function mapStateToProps(state) {
-    const { account, authentication } = state;
+    const { account, authentication,category } = state;
     const { user } = authentication;
     return {
         user,
-        account
+        account,
+        category
     };
 }
 
